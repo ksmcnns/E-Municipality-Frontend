@@ -1,8 +1,19 @@
-/* You can add global styles to this file, and also import other style files */
-
 @import url('https://fonts.googleapis.com/css2?family=Lato:wght@400;700&family=Poppins:wght@400;500;600;700&display=swap');
 
-@import "bootstrap/scss/bootstrap.scss";
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+a {
+  text-decoration: none;
+}
+
+li {
+  list-style: none;
+}
+
 :root {
   --poppins: 'Poppins', sans-serif;
   --lato: 'Lato', sans-serif;
@@ -19,32 +30,10 @@
   --orange: #FD7238;
   --light-orange: #FFE0D3;
 }
-.status.pending {
-  color: #007bff; /* Mavi renk */
-}
-
-.status.process {
-  color: #dc3545; /* Kırmızı renk */
-}
-* {
-  margin: 0;
-  padding: 0;
-  box-sizing: border-box;
-}
-
-a {
-  text-decoration: none;
-  cursor: pointer; /* İmleç el simgesi olur */
-}
-
-li {
-  list-style: none;
-}
 
 html {
   overflow-x: hidden;
 }
-
 
 body.dark {
   --light: #0C0C1E;
@@ -149,7 +138,6 @@ body {
   color: var(--dark);
   white-space: nowrap;
   overflow-x: hidden;
-  text-decoration: none;
   padding: 0 16px; /* İç boşluk ekleyerek daha fazla alan sağlar */
 }
 #sidebar .side-menu li a .bx {
@@ -584,6 +572,3 @@ body {
     min-width: 420px;
   }
 }
-
-html, body { height: 100%; }
-body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }

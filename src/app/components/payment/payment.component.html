@@ -1,0 +1,55 @@
+<section class="container">
+  <h4><label class="text-decoration-underline">Borç Ödeme Formu</label></h4>
+  <form [formGroup]="paymentForm" (ngSubmit)="onSubmit()" class="form">
+    <div class="input-box">
+      <label>TC Kimlik Numarası</label>
+      <input type="text" readonly formControlName="nationalIdNo"/>
+    </div>
+    <div class="input-box">
+      <label>Ödeneceği Kurum</label>
+      <input type="text" readonly formControlName="municipalityName"/>
+    </div>
+    <div class="input-box">
+      <label>Borç Türü</label>
+      <input type="text" readonly formControlName="serviceName"/>
+    </div>
+    <div class="input-box">
+      <label>Borç Tutarı</label>
+      <input type="number" readonly formControlName="debitAmount"/>
+    </div>
+    <div class="input-box">
+      <label>Kart Üzerindeki İsim</label>
+      <input type="text" placeholder="Adı Soyadı" formControlName="cardOwner"/>
+       <div *ngIf="cardOwner.invalid && (cardOwner.dirty || cardNo.touched)"
+           class="alert alert-danger">
+        <div *ngIf="cardOwner.errors?.['required']">Kart Sahibinin Adı  Soyadını Giriniz</div>
+      </div>
+    </div>
+
+    <div class="input-box">
+      <label>Kart Numarası</label>
+      <input type="text" placeholder="XXXX-XXXX-XXXX-XXXX" (input)="formatCardNumber($event)" maxlength="19"
+             formControlName="cardNumber"/>
+      <div *ngIf="cardNo.invalid && (cardNo.dirty || cardNo.touched)"
+           class="alert alert-danger">
+        <div *ngIf="cardNo.errors?.['required']">Kart Numarası Giriniz</div>
+        <div *ngIf="cardNo.errors?.['invalidCardNo']">
+          Kart Numarası hatalı.
+        </div>
+      </div>
+    </div>
+
+    <div class="input-box">
+      <label>CVV</label>
+      <input type="text" placeholder="XXX" (input)="limitCVVLength($event)" maxlength="3" formControlName="cvv"/>
+       <div *ngIf="cardCvvNo.invalid && (cardCvvNo.dirty || cardCvvNo.touched)"
+           class="alert alert-danger">
+        <div *ngIf="cardCvvNo.errors?.['required']">Kart CVV Numarası Giriniz</div>
+        <div *ngIf="cardCvvNo.errors?.['invalidCardCvvNo']">
+          Kart CVV Numarası hatalı.
+        </div>
+      </div>
+    </div>
+    <button type="submit" [disabled]="paymentForm.invalid">Ödeme Yap</button>
+  </form>
+</section>

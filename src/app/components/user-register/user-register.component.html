@@ -1,0 +1,114 @@
+<section class="container">
+  <h4><label class="text-decoration-underline">Kayıt Formu</label></h4>
+  <form [formGroup]="registerForm" (ngSubmit)="onSubmit()" class="form">
+    <div class="column">
+      <div class="input-box">
+        <label>İsim</label>
+        <input formControlName="name" type="text" required />
+        <div *ngIf="registerForm.get('name')?.invalid && registerForm.get('name')?.touched" class="error-message">
+          <p class="text">İsim alanı zorunludur.</p>
+        </div>
+      </div>
+      <div class="input-box">
+        <label>Soy İsim</label>
+        <input formControlName="surname" type="text" required />
+        <div *ngIf="registerForm.get('surname')?.invalid && registerForm.get('surname')?.touched" class="error-message">
+          Soy isim alanı zorunludur.
+        </div>
+      </div>
+    </div>
+    <div class="input-box">
+      <label>TC Kimlik Numarası</label>
+      <input formControlName="nationalIdNo" type="text" required />
+      <div *ngIf="registerForm.get('nationalIdNo')?.invalid && registerForm.get('nationalIdNo')?.touched" class="error-message">
+        TC Kimlik Numarası zorunludur.
+      </div>
+    </div>
+    <div class="input-box">
+      <label>E-Posta</label>
+      <input formControlName="email" type="text" placeholder="Orn:birisi@hotmail.com" required />
+      <div *ngIf="registerForm.get('email')?.invalid && registerForm.get('email')?.touched" class="error-message">
+        Geçerli bir e-posta adresi giriniz.
+      </div>
+    </div>
+    <div class="column">
+      <div class="input-box">
+        <label>Telefon</label>
+        <input formControlName="telephone" type="number" placeholder="0507XXXYYZZ" required />
+        <div *ngIf="registerForm.get('telephone')?.invalid && registerForm.get('telephone')?.touched" class="error-message">
+          Telefon numarası zorunludur ve sadece rakamlardan oluşmalıdır.
+        </div>
+      </div>
+      <div class="input-box">
+        <label>Doğum Tarihi</label>
+        <input formControlName="birthDate" type="date" placeholder="01/01/2001" required />
+        <div *ngIf="registerForm.get('birthDate')?.invalid && registerForm.get('birthDate')?.touched" class="error-message">
+          Doğum tarihi zorunludur.
+        </div>
+      </div>
+    </div>
+    <div class="gender-box">
+      <h3>Cinsiyet</h3>
+      <div class="gender-option">
+        <div class="gender">
+          <input formControlName="gender" type="radio" id="check-male" value="Male" />
+          <label for="check-male">Erkek</label>
+        </div>
+        <div class="gender">
+          <input formControlName="gender" type="radio" id="check-female" value="Female" />
+          <label for="check-female">Kadın</label>
+        </div>
+      </div>
+    </div>
+    <div class="input-box address">
+      <label>Adres</label>
+      <input formControlName="address" type="text" required />
+      <div *ngIf="registerForm.get('address')?.invalid && registerForm.get('address')?.touched" class="error-message">
+        Adres alanı zorunludur.
+      </div>
+      <div class="column">
+        <div class="select-box">
+          <select formControlName="city">
+            <option hidden>Şehir</option>
+            <option>Ankara</option>
+          </select>
+          <div *ngIf="registerForm.get('city')?.invalid && registerForm.get('city')?.touched" class="error-message">
+            Şehir seçiniz.
+          </div>
+        </div>
+        <div class="select-box">
+          <select formControlName="district">
+            <option hidden>İlçe</option>
+            <option>Ütopya</option>
+          </select>
+          <div *ngIf="registerForm.get('district')?.invalid && registerForm.get('district')?.touched" class="error-message">
+            İlçe seçiniz.
+          </div>
+        </div>
+      </div>
+      <div class="column">
+        <input formControlName="postcode" type="text" placeholder="Posta Kodu" required />
+        <div *ngIf="registerForm.get('postcode')?.invalid && registerForm.get('postcode')?.touched" class="error-message">
+          Posta kodu zorunludur ve sadece rakamlardan oluşmalıdır.
+        </div>
+      </div>
+      <div class="column">
+        <div class="input-box">
+          <label>Parola</label>
+          <input formControlName="password" type="password" required />
+          <div *ngIf="registerForm.get('password')?.invalid && registerForm.get('password')?.touched" class="error-message">
+            Parola zorunludur.
+          </div>
+        </div>
+        <div class="input-box">
+          <label>Parola Tekrarı</label>
+          <input formControlName="confirmPassword" type="password" required />
+          <div *ngIf="registerForm.get('confirmPassword')?.hasError('mismatch') && registerForm.get('confirmPassword')?.touched" class="error-message">
+            Parolalar eşleşmiyor.
+          </div>
+        </div>
+      </div>
+    </div>
+    <button type="submit">Kaydol</button>
+  </form>
+</section>

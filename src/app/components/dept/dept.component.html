@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<!---Coding By CodingLab | www.codinglabweb.com--->
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+    <!--<title>Dept Form in HTML CSS</title>-->
+    <!---Custom CSS File--->
+    <link rel="stylesheet" href="dept.component.css" />
+  </head>
+  <body>
+    <section class="container">
+      <header>Borç Sorgulama Ekranı</header>
+      <form action="#" class="form">
+         <div class="input-box">
+          <label>TC Kimlik Numarası</label>
+          <input type="text" required />
+        </div>
+        <div class="select-box">
+          <select>
+            <option hidden>Borç Türü</option>
+          </select>
+        </div>
+        <button>Sorgula</button>
+        <div class="input-box">
+          <label>Son Ödeme Tarihi</label>
+          <input type="text"  readonly/>
+          </div>
+         <div class="column">
+          <div class="input-box">
+          <label>Borç Durum</label>
+          <input type="text"  readonly/>
+          </div>
+          <div class="input-box">
+            <button>Ödeme Yap</button>
+          </div>
+        </div>
+      </form>
+    </section>
+  </body>
+</html>

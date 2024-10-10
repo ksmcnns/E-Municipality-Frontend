@@ -1,0 +1,124 @@
+<!-- SIDEBAR -->
+<section id="sidebar">
+  <a href="#" class="brand">
+    <span class="text">{{ municipalityName }}</span>
+  </a>
+  <ul class="side-menu top">
+    <li>
+      <a routerLink="/home">
+        <i class='bx bxs-bell'></i>
+        <span class="text">Bildirimler</span>
+      </a>
+    </li>
+    <li>
+      <a routerLink="/home">
+        <i class='bx bxs-news'></i>
+        <span class="text">Belediye Bülteni</span>
+      </a>
+    </li>
+    <li>
+      <a routerLink="/home">
+        <i class='bx bxs-message-dots'></i>
+        <span class="text">Bize Ulaşın</span>
+      </a>
+    </li>
+    <li>
+      <a routerLink="/home">
+        <i class='bx bxs-group'></i>
+        <span class="text">Profilim</span>
+      </a>
+    </li>
+  </ul>
+  <ul class="side-menu">
+    <li>
+      <a href="#" (click)="logout()" class="logout">
+        <i class='bx bxs-log-out-circle'></i>
+        <span class="text">Çıkış Yap</span>
+      </a>
+    </li>
+  </ul>
+</section>
+<!-- SIDEBAR -->
+
+<!-- CONTENT -->
+<section id="content">
+  <!-- NAVBAR -->
+  <nav>
+    <i class='bx bx-menu'></i>
+    <a href="#" class="nav-link">Ara</a>
+    <form action="#">
+      <div class="form-input">
+        <input type="search">
+        <button type="button" class="search-btn"><i class='bx bx-search'></i></button>
+      </div>
+    </form>
+    <p style="font-weight: bold">Hoşgeldiniz, {{ userData?.name }} {{ userData?.surname }}</p>
+  </nav>
+  <!-- NAVBAR -->
+
+  <!-- MAIN -->
+  <main>
+    <ul class="box-info">
+      <li (click)="updateTableHeaders('upcomingPayments')">
+        <i class='bx bxs-time-five'></i>
+        <span class="text">
+            <h4><p>Yaklaşan Ödemelerim</p></h4>
+        </span>
+      </li>
+      <li (click)="updateTableHeaders('servicesUsed')">
+        <i class='bx bxs-check-square'></i>
+        <span class="text">
+            <h4><p>Yararlandığım Hizmetler</p></h4>
+        </span>
+      </li>
+      <li (click)="updateTableHeaders('automaticPayments')">
+        <i class='bx bxs-dollar-circle'></i>
+        <span class="text">
+            <h5><p>Otomatik Ödeme Talimatlarım</p></h5>
+        </span>
+      </li>
+    </ul>
+
+    <!-- table-data -->
+    <div class="table-data">
+      <div class="order">
+        <div class="head">
+          <i class='bx bx-search'></i>
+          <i class='bx bx-filter'></i>
+        </div>
+        <div *ngIf="debits.length > 0">
+          <table>
+            <thead>
+            <tr>
+              <th>{{ tableHeaders.domain }}</th>
+              <th>{{ tableHeaders.title }}</th>
+              <th>{{tableHeaders.dateOrder}}</th>
+              <th>{{ tableHeaders.status }}</th>
+            </tr>
+            </thead>
+            <tbody>
+            <tr *ngFor="let debit of debits">
+              <td>{{ debit.name }}</td>
+              <td>{{debit.debitAmount}}</td>
+              <td>{{ debit.paymentDeadline | date: 'dd/MM/yyyy' }}</td>
+              <td *ngIf="debit.debitStatus; else unpaidBadge">
+                <span class="status completed"  style="margin-left: 8px;">Ödenmiş</span>
+              </td>
+              <ng-template #unpaidBadge>
+                <td>
+                  <span class="status pending">Ödenmemiş</span>
+                  <span class="status process" style="cursor: pointer; margin-left: 20px;" (click)="goToPaymentPage(debit)">Ödeme Yap</span>
+                </td>
+              </ng-template>
+            </tr>
+            </tbody>
+          </table>
+        </div>
+        <div *ngIf="debits.length === 0">
+        </div>
+      </div>
+    </div>
+  </main>
+  <!-- MAIN -->
+</section>
+<!-- CONTENT -->
